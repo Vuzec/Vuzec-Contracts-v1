@@ -8,7 +8,7 @@ import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 import "@openzeppelin/contracts/utils/math/SafeMath.sol";
 import "@openzeppelin/contracts/token/ERC1155/IERC1155Receiver.sol";
 
-contract Presale is IERC1155Receiver, CommonConstants{
+contract Presale is IERC1155Receiver{
     using SafeMath for uint256;
     
     event InitialOfferingCreated(uint256 tokenID, uint256 totalTokenOfferingAmount, uint256 pricePerTokenInUSDC, uint256 offeringStartTime, uint256 offeringEndTime);

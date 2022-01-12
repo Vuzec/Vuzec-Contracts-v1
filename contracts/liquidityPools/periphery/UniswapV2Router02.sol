@@ -11,8 +11,8 @@ import './interfaces/IWETH.sol';
 import './interfaces/IWALM.sol';
 import './interfaces/IERC1155.sol';
 import './interfaces/IERC1155Receiver.sol';
-import "../../Constants.sol";
-contract UniswapV2Router02 is IUniswapV2Router02, CommonConstants, IERC1155Receiver {
+
+contract UniswapV2Router02 is IUniswapV2Router02, IERC1155Receiver {
     using SafeMath for uint;
 
     address public immutable override factory;

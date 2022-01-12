@@ -6,7 +6,7 @@ import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 import "@openzeppelin/contracts/token/ERC1155/IERC1155Receiver.sol";
 import "@openzeppelin/contracts/token/ERC1155/IERC1155.sol";
 
-contract WALM is ERC20, IERC1155Receiver, CommonConstants {
+contract WALM is ERC20, IERC1155Receiver{
 
     event  Withdrawal(address indexed src, uint wad, uint idOfALM);
 
