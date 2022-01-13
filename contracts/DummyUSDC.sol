@@ -7,7 +7,7 @@ import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 contract DummyUSDC is ERC20{
     
     address public minter;
-    constructor() public ERC20("Dummy USD Coin", "USDC") {
+    constructor() ERC20("Dummy USD Coin", "USDC") {
         _mint(msg.sender, 100000);
         minter = msg.sender;
     }

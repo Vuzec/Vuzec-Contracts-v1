@@ -10,11 +10,11 @@ contract WALM is ERC20, IERC1155Receiver{
 
     event  Withdrawal(address indexed src, uint wad, uint idOfALM);
 
-    address public ALM;
+    address public alm;
     uint256 public idOfALM;
 
     constructor(string memory _name, string memory _symbol, address _ALM, uint _id) public ERC20(_name, _symbol) {
-        ALM = _ALM;
+        alm = _ALM;
         idOfALM = _id;
     }
 
@@ -37,7 +37,7 @@ contract WALM is ERC20, IERC1155Receiver{
         );
         burn(msg.sender, amountALM);
         //Transfer 1155
-        IERC1155(ALM).safeTransferFrom(address(this), msg.sender, idOfALM, amountALM, " ");
+        IERC1155(alm).safeTransferFrom(address(this), msg.sender, idOfALM, amountALM, " ");
         emit Withdrawal(msg.sender, amountALM, idOfALM);
     }
 
@@ -69,7 +69,7 @@ contract WALM is ERC20, IERC1155Receiver{
     returns(bytes4)
     {
         // bytes4(keccak256("onERC1155BatchReceived(address,address,uint256[],uint256[],bytes)"))
-        0xbc197c81;
+        return 0xbc197c81;
     }
         
     function supportsInterface(bytes4 interfaceId) public view virtual override returns (bool) {

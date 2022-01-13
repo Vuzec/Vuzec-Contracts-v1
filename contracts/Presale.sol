@@ -34,7 +34,7 @@ contract Presale is IERC1155Receiver{
     uint256 public preSaleCommision;
     uint256 public artistCommision;
 
-    constructor(address _USDCAddress, address _ALMContract, uint256 _preSaleCommision, uint256 _artistCommision) public {
+    constructor(address _USDCAddress, address _ALMContract, uint256 _preSaleCommision, uint256 _artistCommision) {
         USDCAddress = _USDCAddress;
         ALMContract = ALM(_ALMContract);
         preSaleOwner = msg.sender;
@@ -239,7 +239,7 @@ contract Presale is IERC1155Receiver{
             uint256 _artistUSDCTokens
         )
     {
-        uint256 _preSaleCommission = cutPer10000(preSaleCommision, _amount); 
+        _preSaleCommission = cutPer10000(preSaleCommision, _amount); 
         return (
             _preSaleCommission,
             _amount.sub(_preSaleCommission)
@@ -283,7 +283,7 @@ contract Presale is IERC1155Receiver{
     returns(bytes4)
     {
         // bytes4(keccak256("onERC1155BatchReceived(address,address,uint256[],uint256[],bytes)"))
-        0xbc197c81;
+        return 0xbc197c81;
     }
         
     function supportsInterface(bytes4 interfaceId) public view virtual override returns (bool) {

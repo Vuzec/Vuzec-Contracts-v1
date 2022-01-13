@@ -54,12 +54,12 @@ contract ALM is ERC1155, AccessControl{
         address _preSale
     ) external IsAdmin returns (bool){
         preSaleContract = Presale(_preSale);
+        return true;
     }
 
     ///@dev Create and Deploy ERC20 tokens for an album and deploys it.
     ///@notice It set's the marketplace as the approved address for the tokenTotal supply.
-    ///@param _tokenTotalCap  Total ERC20 to be minted
-///@param _name               Name for the ERC20 token
+    ///@param _name               Name for the ERC20 token
     ///@param _symbol         Symbol for the ERC20 token
     function deploy(string memory _name, string memory _symbol, uint256 _id) internal returns (address){
         WALM fungibleToken = new WALM(_name, _symbol, address(this), _id);
