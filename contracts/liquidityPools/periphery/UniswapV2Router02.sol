@@ -565,7 +565,7 @@ contract UniswapV2Router02 is IUniswapV2Router02, IERC1155Receiver {
     override
     returns(bytes4)
     {
-        return ERC1155_ACCEPTED;
+        return 0xf23a6e61;
     }
        
     // will not accept batch tokens
@@ -580,7 +580,7 @@ contract UniswapV2Router02 is IUniswapV2Router02, IERC1155Receiver {
     override
     returns(bytes4)
     {
-        //ERC1155_BATCH_ACCEPTED;
+        return 0xbc197c81;
     }   
     
     function supportsInterface(bytes4 interfaceId) public view virtual override returns (bool) {
