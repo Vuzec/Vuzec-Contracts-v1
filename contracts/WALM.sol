@@ -54,6 +54,7 @@ contract WALM is ERC20, IERC1155Receiver{
     returns(bytes4)
     {   
         // bytes4(keccak256("onERC1155Received(address,address,uint256,uint256,bytes)"))
+        mint(operator, value);
         return 0xf23a6e61;
     }
         
