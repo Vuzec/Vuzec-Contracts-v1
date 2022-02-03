@@ -1,3 +1,5 @@
+
+  
 // SPDX-License-Identifier: MIT
 
 pragma solidity ^0.8.0;
@@ -12,22 +14,16 @@ contract WALM is ERC20, IERC1155Receiver{
 
     address public alm;
     uint256 public idOfALM;
+    address public router;
 
-    constructor(string memory _name, string memory _symbol, address _ALM, uint _id) public ERC20(_name, _symbol) {
+    constructor(string memory _name, string memory _symbol, address _ALM, uint _id, address _router) public ERC20(_name, _symbol) {
         alm = _ALM;
         idOfALM = _id;
+        router = _router;
     }
 
     function decimals() public view virtual override returns (uint8) {
         return 0;
-    }
-
-    function mint(address operator, uint256 amount) public virtual {
-        _mint(operator, amount);
-    }
-
-    function burn(address operator, uint256 amount) public virtual {
-        _burn(operator, amount);
     }
 
     function withdraw(uint amountALM) public {
@@ -35,7 +31,8 @@ contract WALM is ERC20, IERC1155Receiver{
             balanceOf(msg.sender) >= amountALM,
             "WALM: Insufficeint withdrawal"
         );
-        burn(msg.sender, amountALM);
+        require(msg.sender == router, "WALM: Sender not Router Contract!");
+        _burn(msg.sender, amountALM);
         //Transfer 1155
         IERC1155(alm).safeTransferFrom(address(this), msg.sender, idOfALM, amountALM, " ");
         emit Withdrawal(msg.sender, amountALM, idOfALM);
@@ -54,7 +51,10 @@ contract WALM is ERC20, IERC1155Receiver{
     returns(bytes4)
     {   
         // bytes4(keccak256("onERC1155Received(address,address,uint256,uint256,bytes)"))
-        mint(operator, value);
+        require(operator == router, "WALM: Sender not Router Contract!");
+        require(id == idOfALM, "WALM: ALM Token Mismatch!");
+
+        _mint(operator, value);
         return 0xf23a6e61;
     }
         

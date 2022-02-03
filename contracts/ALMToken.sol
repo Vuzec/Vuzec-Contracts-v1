@@ -28,9 +28,12 @@ contract ALM is ERC1155, AccessControl{
     
     Counters.Counter private _tokenIds;
     Presale public preSaleContract;
+    address public routerAddress;
 
-    constructor() ERC1155("https://game.example/api/item/{id}.json") {
+    ///@param _routerAddress Router contract implementation address 
+    constructor(address _routerAddress) ERC1155("https://game.example/api/item/{id}.json") {
         _setupRole(DEFAULT_ADMIN_ROLE, msg.sender);
+        routerAddress = _routerAddress;
     }
     
     ///@notice checks if caller has admin role
@@ -62,7 +65,7 @@ contract ALM is ERC1155, AccessControl{
     ///@param _name               Name for the ERC20 token
     ///@param _symbol         Symbol for the ERC20 token
     function deploy(string memory _name, string memory _symbol, uint256 _id) internal returns (address){
-        WALM fungibleToken = new WALM(_name, _symbol, address(this), _id);
+        WALM fungibleToken = new WALM(_name, _symbol, address(this), _id, routerAddress);
         return address(fungibleToken);
     }
 
