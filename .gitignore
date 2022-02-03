@@ -4,3 +4,7 @@ node_modules
 /cache
 */artifacts
 */.deps
+*/*/artifacts
+*/*/.deps
+*/*/*/artifacts
+*/*/*/.deps
