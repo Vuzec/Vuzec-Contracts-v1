@@ -153,7 +153,7 @@ contract Presale is IERC1155Receiver{
         uint256 _pricePerTokenInUSDC, 
         uint256 _offeringEndUnixTime,
         uint256 _tokenTotalCap
-    ) public checkPrice(_pricePerTokenInUSDC) returns(bool){
+    ) external checkPrice(_pricePerTokenInUSDC) returns(bool){
 
         uint256 currentTime = block.timestamp;
 

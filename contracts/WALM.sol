@@ -26,7 +26,7 @@ contract WALM is ERC20, IERC1155Receiver{
         return 0;
     }
 
-    function withdraw(uint amountALM) public {
+    function withdraw(uint amountALM) external {
         require(
             balanceOf(msg.sender) >= amountALM,
             "WALM: Insufficeint withdrawal"
@@ -53,6 +53,7 @@ contract WALM is ERC20, IERC1155Receiver{
         // bytes4(keccak256("onERC1155Received(address,address,uint256,uint256,bytes)"))
         require(operator == router, "WALM: Sender not Router Contract!");
         require(id == idOfALM, "WALM: ALM Token Mismatch!");
+        require(msg.sender == router, "WALM: Message sender not router!");
 
         _mint(operator, value);
         return 0xf23a6e61;

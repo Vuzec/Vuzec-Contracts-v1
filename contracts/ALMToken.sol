@@ -47,7 +47,7 @@ contract ALM is ERC1155, AccessControl{
 
     ///@notice Grants admin role to account
     ///@param _account Adress to be granted role
-    function addAdmin(address _account) public IsAdmin {
+    function addAdmin(address _account) external IsAdmin {
         grantRole(DEFAULT_ADMIN_ROLE, _account);
     }
 
