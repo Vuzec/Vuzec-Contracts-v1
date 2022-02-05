@@ -31,7 +31,7 @@ contract ALM is ERC1155, AccessControl{
     address public routerAddress;
 
     ///@param _routerAddress Router contract implementation address 
-    constructor(address _routerAddress) ERC1155("https://game.example/api/item/{id}.json") {
+    constructor(address _routerAddress) ERC1155("") {
         _setupRole(DEFAULT_ADMIN_ROLE, msg.sender);
         routerAddress = _routerAddress;
     }
