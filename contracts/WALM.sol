@@ -16,7 +16,7 @@ contract WALM is ERC20, IERC1155Receiver{
     uint256 public idOfALM;
     address public router;
 
-    constructor(string memory _name, string memory _symbol, address _ALM, uint _id, address _router) public ERC20(_name, _symbol) {
+    constructor(string memory _name, string memory _symbol, address _ALM, uint _id, address _router) ERC20(_name, _symbol) {
         alm = _ALM;
         idOfALM = _id;
         router = _router;

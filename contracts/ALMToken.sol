@@ -30,12 +30,11 @@ contract ALM is ERC1155, AccessControl{
     Presale public preSaleContract;
     address public routerAddress;
 
-    ///@param _routerAddress Router contract implementation address 
-    constructor(address _routerAddress) ERC1155("") {
+    constructor() ERC1155("") {
         _setupRole(DEFAULT_ADMIN_ROLE, msg.sender);
-        routerAddress = _routerAddress;
     }
     
+
     ///@notice checks if caller has admin role
     modifier IsAdmin {
         require(
@@ -58,6 +57,12 @@ contract ALM is ERC1155, AccessControl{
     ) external IsAdmin returns (bool){
         preSaleContract = Presale(_preSale);
         return true;
+    }
+
+    
+    ///@param _router Router contract implementation address 
+    function setRouter(address _router) IsAdmin external {
+        routerAddress = _router;
     }
 
     ///@dev Create and Deploy ERC20 tokens for an album and deploys it.

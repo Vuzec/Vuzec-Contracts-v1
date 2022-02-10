@@ -33,7 +33,12 @@ contract Presale is IERC1155Receiver{
     // Rates in 10,000 i.e 5% = 500
     uint256 public preSaleCommision;
     uint256 public artistCommision;
+    
 
+    ///@param _USDCAddress Address of usdc contract
+    ///@param _ALMContract Address of ALM contract
+    ///@param _preSaleCommision How many ALMs to send to contract creator
+    ///@param _artistCommision How much ALMs to send to artist
     constructor(address _USDCAddress, address _ALMContract, uint256 _preSaleCommision, uint256 _artistCommision) {
         USDCAddress = _USDCAddress;
         ALMContract = ALM(_ALMContract);
