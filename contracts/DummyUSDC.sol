@@ -8,12 +8,12 @@ contract DummyUSDC is ERC20{
     
     address public minter;
     constructor() ERC20("Dummy USD Coin", "USDC") {
-        _mint(msg.sender, 100000);
+        _mint(msg.sender, 100000*10**6);
         minter = msg.sender;
     }
     
     function decimals() public view virtual override returns (uint8) {
-        return 2;
+        return 6;
     }
 
      function mint(address to, uint256 amount) public virtual {

@@ -53,7 +53,7 @@ contract WALM is ERC20, IERC1155Receiver{
         // bytes4(keccak256("onERC1155Received(address,address,uint256,uint256,bytes)"))
         require(operator == router, "WALM: Sender not Router Contract!");
         require(id == idOfALM, "WALM: ALM Token Mismatch!");
-        require(msg.sender == router, "WALM: Message sender not router!");
+        require(msg.sender == alm, "WALM: Not a valid AML!");
 
         _mint(operator, value);
         return 0xf23a6e61;
